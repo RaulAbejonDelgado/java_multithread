@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.raul.thread1</groupId>
-    <artifactId>multihilos1</artifactId>
+    <artifactId>multihilos_vs_unicohilo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
