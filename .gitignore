@@ -1,5 +1,7 @@
 .idea
 /ejemplos/multithread/.iml
-/ejemplos/multithread/target
+/ejemplos/multithread/target/
 /ejemplos/rebota_pelota/.iml
-/ejemplos/rebota_pelota/target
+/ejemplos/rebota_pelota/target/
+/ejemplos/multithread_implements/target/
+/ejemplos/multithread_extends/target/

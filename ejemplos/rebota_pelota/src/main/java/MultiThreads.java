@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,12 +38,26 @@ class PelotaHilos implements Runnable {
     static private int numeroThread = 0;
     private PelotaM pelotaM;
     private Component componente;
+    private String nombre;
+//    int n = Integer.parseInt(this.getNombre());
+    private String nChars = "*";
+    //nChars += "*".substring(0, n);
 
-    public PelotaHilos(PelotaM p, Component unComponent) {
+    public PelotaHilos(PelotaM p, Component unComponent, String nombre) {
         numeroThread +=1;
         this.pelotaM = p;
         this.componente = unComponent;
+        this.nombre = nombre;
 
+
+    }
+
+    public String getNombre(){
+        return this.nombre;
+    }
+
+    public int getNumeroThread(){
+        return this.numeroThread;
     }
 
     /**
@@ -52,10 +68,10 @@ class PelotaHilos implements Runnable {
         for (int i = 1; i <= 5000; i++) {
 
             pelotaM.mueve_pelota(componente.getBounds());
-
-
             componente.paint(componente.getGraphics());
-            System.out.println("Hilo numero -> "+numeroThread +" / "+ this.pelotaM.getNumeroThread());
+
+            System.out.println(" Hilo numero -> "+this.getNombre()+" nº de ciclo -> "+ i);
+
             try {
                 Thread.sleep(5);
             } catch (InterruptedException ir) {
@@ -176,6 +192,8 @@ class LaminaPelotaM extends JPanel {
 
 class MarcoReboteM extends JFrame {
 
+    int nJuego = 1;
+
     public MarcoReboteM() {
 
         setBounds(600, 300, 400, 350);
@@ -236,7 +254,7 @@ class MarcoReboteM extends JFrame {
         /**
          * 3 - Instanciar la clase creada(punto 1) y guardarla en variable del tipo Runneable
          */
-        Runnable r = new PelotaHilos(pelota, lamina);
+        Runnable r = new PelotaHilos(pelota, lamina, String.valueOf(nJuego));
 
         /**
          *  4 - Instancia la clase Thread pasandole como parametro la variable del tipo Runneable del punto 3
@@ -247,6 +265,7 @@ class MarcoReboteM extends JFrame {
          * 5 - Poner en marcha el hilo de ejecucion con el metodo start() de clase thread
          */
         t.start();
+        nJuego ++;
 
     }
 
